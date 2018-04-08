@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +51,21 @@ Your browser does not support the canvas element.
         
 	}
     
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+	}
+
+
+    
     function draw(e){
     	var asd = getPosition(e, canvas);
     	if(y){
@@ -60,13 +76,13 @@ Your browser does not support the canvas element.
     }
     
     function convertToImage(){
-	var string = canvas.toDataURL("image/png");
+		var string = canvas.toDataURL("image/png");
 	    document.write(string.substr(22+1));
-	    document.write("\n")
+	   	document.write("\n")
 	    document.write(canvas.toDataURL("image/png"));
-       	
-	}
-    
+    	var newString = [canvas.toDataURL("image/png")];
+    	download("Base64Text", newString);
+    }
     
 </script>
 
