@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+<div id = "downDiv" onmousemove = "draw(event)" onmousedown = "myFunction()" onmouseup = "myFunction()">
+<body>
+<h1>
+This program allows you to use computational linguistics to convert handwritten numbers to computer understood values. <br> Draw your number in the box and press the button to convert.
+</h1>
+<canvas id = "myCanvas"  width = "1200" height ="600"
+style = "border:10px solid #c3c3c3;">
+Your browser does not support the canvas element.
+
+</canvas>
+</br>
+<button type="button" onclick="convertToImage()" style="
+    height: 100px;
+    width: 62%;
+    font-size: 30px;
+    background: rgb(34, 255, 0);
+">Click to convert to printed numbers</button>
+<script>
+	
+   var y = false;
+   
+   
+    function getPosition(mouseEvent, sigCanvas) {
+         var x, y;
+         if (mouseEvent.pageX != undefined && mouseEvent.pageY != undefined) {
+            x = mouseEvent.pageX;
+            y = mouseEvent.pageY;
+         } else {
+            x = mouseEvent.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            y = mouseEvent.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+         }
+ 
+         return { X: x - sigCanvas.offsetLeft, Y: y - sigCanvas.offsetTop };
+      }
+ 
+      
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    
+   
+	function myFunction(){
+		
+        y = !y;
+        
+	}
+    
+    function draw(e){
+    	var asd = getPosition(e, canvas);
+    	if(y){
+        	ctx.fillStyle = "#FF0000";
+    		//ctx.fillRect(event.clientX-25, event.clientY-170, 10,10);
+            ctx.fillRect(asd.X, asd.Y, 10,10);
+        }
+    }
+    
+    function convertToImage(){
+		document.write(canvas.toDataURL("image/png"));
+        
+	}
+    
+    
+</script>
+
+</body>
+</div>
+
+</html>
