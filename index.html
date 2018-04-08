@@ -77,9 +77,9 @@ Your browser does not support the canvas element.
     
     function convertToImage(){
 		var string = canvas.toDataURL("image/png");
-	    document.write(string.substr(22+1));
-	   	document.write("\n")
-	    document.write(canvas.toDataURL("image/png"));
+	    //document.write(string.substr(22+1));
+	   	//document.write("\n")
+	   // document.write(canvas.toDataURL("image/png"));
     	var newString = [canvas.toDataURL("image/png")];
     	download("Base64Text", newString);
     }
